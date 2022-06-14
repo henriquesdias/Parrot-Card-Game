@@ -46,6 +46,9 @@ img{
 .options{
     display: none;
 }
+.hide{
+    display: none;
+}
 @media (max-width: 574px) {
     h1{
         font-size: 36px;
