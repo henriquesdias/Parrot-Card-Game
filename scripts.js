@@ -14,13 +14,11 @@ function verifyConditionForPlay() {
     showCards();
 }
 
-// function comparador() { 
-// 	return Math.random() - 0.5; 
-// }
+function comparador() { 
+	return Math.random() - 0.5; 
+}
 
-function showCards() {
-    for (let i = 0 ; i < numberOfCards / 2 ; i++) {
-        allCards[i].innerHTML = deck[i].innerHTML;
-    }
-    console.log('foi chamada');
+function selectCard(e) {
+    e.querySelector('.backCard').classList.toggle('effectBackCard');
+    e.querySelector('.frontCard').classList.toggle('effectFrontCard');
 }

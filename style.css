@@ -40,11 +40,33 @@ img{
     cursor: pointer;
     margin: 10px;
 }
-.options{
-    display: none;
-}
 .hide{
     display: none;
+}
+.face {
+    width: 117px;
+    height: 146px;
+    background-color: #A7E9AF;
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px rgba(0,0,0,.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    backface-visibility: hidden;
+    transition: all .5s;
+    transform-style: preserve-3d;
+  }
+.frontCard {
+    transform: rotateY(180deg);
+  }
+
+.effectFrontCard {
+    transform: rotateY(0deg);
+}
+
+.effectBackCard {
+    transform: rotateY(-180deg);
 }
 @media (max-width: 574px) {
     h1{
