@@ -1,5 +1,6 @@
 let allCards = document.querySelectorAll('.card');
-let deck = document.querySelectorAll('.frontCard');
+let deck = document.querySelectorAll('.options');
+let gifs= [deck[0] , deck[1] , deck[2],  deck[3],  deck[4],  deck[5], deck[6]];
 let numberOfCards = prompt("Digite a quantidade de cartas que deseja jogar");
 verifyConditionForPlay();
 function verifyConditionForPlay() {
@@ -11,7 +12,13 @@ function verifyConditionForPlay() {
     for (let i = 13 ; i >= numberOfCards; i--) {
         allCards[i].classList.add('hide');
     }
-    showCards();
+    shuffleDeck();
+}
+function shuffleDeck() {
+    gifs.sort(comparador);
+    for (let i = 0 ; i < numberOfCards ; i++) {
+        allCards[i].querySelector('.frontCard').innerHTML = gifs[i].innerHTML;
+    }
 }
 
 function comparador() { 
