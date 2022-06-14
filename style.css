@@ -7,10 +7,57 @@ body{
 footer{
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 h1{
     color: #75B79E;
     font-size: 56px;
     font-weight: bold;
     margin-top: 40px;
+}
+main{
+    width: 85%;
+    margin: 20px auto 0 auto;
+    display: flex;
+    flex-direction:column;
+}
+main > div{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+img{
+    width: 100px;
+    height: 100px;
+}
+.card{
+    width: 117px;
+    height: 146px;
+    background-color: #A7E9AF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    border: 1px solid #99CEA8;
+    cursor: pointer;
+    margin: 10px;
+}
+.options{
+    display: none;
+}
+@media (max-width: 574px) {
+    h1{
+        font-size: 36px;
+        word-break: keep-all;
+    }
+    main{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+    main > div{
+        flex-direction: column;
+    }
 }
