@@ -4,7 +4,7 @@ body{
     background-color: #EEF9BF;
     font-family: 'Roboto', sans-serif;
 }
-footer{
+header{
     display: flex;
     justify-content: center;
     align-items: center;

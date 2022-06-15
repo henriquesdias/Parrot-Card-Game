@@ -1,6 +1,6 @@
 let allCards;
+let count = 0;
 let container = document.querySelector('main');
-let cardsFinal = [];
 let gifs= [
     '<img src="./img/bobrossparrot.gif" >',
     '<img src="./img/explodyparrot.gif" >',
@@ -9,7 +9,7 @@ let gifs= [
     '<img src="./img/revertitparrot.gif" >',
     '<img src="./img/tripletsparrot.gif" >',
     '<img src="./img/unicornparrot.gif" >'
-]
+];
 let numberOfCards = prompt("Digite a quantidade de cartas que deseja jogar");
 
 verifyConditionForPlay();
@@ -44,6 +44,7 @@ function verifyConditionForPlay() {
     // let id = setInterval( showBeforeTheBeginGame , 2000);
 }
 function shuffleDeck() {
+    let cardsFinal = [];
     for (let i = 0 ; i < allCards.length ; i++) {
         cardsFinal.push(allCards[i].innerHTML);
         cardsFinal = cardsFinal.sort(comparador);
@@ -61,7 +62,33 @@ function showBeforeTheBeginGame() {
         allCards[i].querySelector('.frontCard').classList.toggle('effectFrontCard');
     }
 }
+let firstCard;
+let secondCard;
 function selectCard(e) {
+    clearInterval('id');
     e.querySelector('.backCard').classList.toggle('effectBackCard');
     e.querySelector('.frontCard').classList.toggle('effectFrontCard');
+    if (firstCard === undefined) {
+        firstCard = e;
+    } else {
+        secondCard = e;
+        if (firstCard.innerHTML === secondCard.innerHTML) {
+            console.log('são iguais');
+            firstCard = undefined;
+            secondCard = undefined;
+        } else {
+            firstCard.querySelector('.backCard').classList.toggle('effectBackCard');
+            firstCard.querySelector('.frontCard').classList.toggle('effectFrontCard');
+            secondCard.querySelector('.backCard').classList.toggle('effectBackCard');
+            secondCard.querySelector('.frontCard').classList.toggle('effectFrontCard');
+            firstCard = undefined;
+            secondCard = undefined;
+        }
+    }
 }
+// function turnCard(){
+//     firstCard.querySelector('.backCard').classList.toggle('effectBackCard');
+//     firstCard.querySelector('.frontCard').classList.toggle('effectFrontCard');
+//     secondCard.querySelector('.backCard').classList.toggle('effectFrontCard');
+//     secondCard.querySelector('.frontCard').classList.toggle('effectBackCard');
+// }
