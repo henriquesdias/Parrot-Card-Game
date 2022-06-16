@@ -1,5 +1,6 @@
 let allCards;
 let count = 0;
+let times = 0;
 let container = document.querySelector('main');
 let numberOfCards;
 let showCards;
@@ -58,22 +59,23 @@ function shuffleDeck() {
 function comparador() { 
 	return Math.random() - 0.5; 
 }
-let time = 0;
 function showBeforeTheBeginGame() {
     for(let i = 0 ; i < numberOfCards ; i++) {
         allCards[i].querySelector('.backCard').classList.toggle('effectBackCard');
         allCards[i].querySelector('.frontCard').classList.toggle('effectFrontCard');
     }
-    time++;
-    if (time === 2) {
+    times++;
+    if (times === 2) {
         clearInterval(showCards);
-        console.log('foi limpo');
+        times = 0;
     }    
 }
 let firstCard;
 let secondCard;
+let conditionVictory = 0;
 function selectCard(e) {
- 
+    count++;
+    console.log(count);
     if (firstCard === undefined) {
         firstCard = e;
         firstCard.querySelector('.backCard').classList.toggle('effectBackCard');
@@ -85,6 +87,7 @@ function selectCard(e) {
         if (firstCard.innerHTML === secondCard.innerHTML) {
             firstCard = undefined;
             secondCard = undefined;
+            conditionVictory++;
         } else {
             setTimeout(turnCard , 1000 , firstCard, secondCard);
             firstCard = undefined;
@@ -92,7 +95,7 @@ function selectCard(e) {
         }
 
     }
-    // verifyVictory();
+    setTimeout(verifyVictory , 700);
 }
 const turnCard = function (card1 , card2) {
     card1.querySelector('.backCard').classList.toggle('effectBackCard');
@@ -102,13 +105,17 @@ const turnCard = function (card1 , card2) {
 }
 
 
-// function verifyVictory() {
-//     let j = 0;
-//     for (let i = 0  ; i < numberOfCards ; i++) {
-//         if (allCards[i].querySelector('.backCard').classList.contains('effectBackCard')) {
-//             j++;
-//         } if (j == numberOfCards) {
-//             alert('Você ganhou !!');
-//         }
-//     }
-// }
+function verifyVictory() {
+    if (conditionVictory == numberOfCards / 2) {
+        alert(`Você ganhou em ${count} rodadas`);
+        let answer = prompt('Deseja continuar a partida ?');
+        if (answer === 'sim') {
+            container.innerHTML = '';
+            count = 0;
+            numberOfCards = prompt("Digite a quantidade de cartas que deseja jogar");
+            verifyConditionForPlay();
+        } else if (answer === 'não') {
+            alert('Então tchau :(');
+        }
+    }
+}
