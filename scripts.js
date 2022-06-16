@@ -121,7 +121,6 @@ function verifyVictory() {
             container.innerHTML = '';
             count = 0;
             conditionVictory = 0;
-            numberOfCards = prompt("Digite a quantidade de cartas que deseja jogar");
             verifyConditionForPlay();
             timer.innerHTML = 0;
         } else if (answer === 'não') {
