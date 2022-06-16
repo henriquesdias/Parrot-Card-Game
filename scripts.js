@@ -1,9 +1,11 @@
 let allCards;
 let count = 0;
 let times = 0;
+let value;
 let container = document.querySelector('main');
 let numberOfCards;
 let showCards;
+const timer = document.querySelector('.timer');
 let gifs= [
     '<img src="./img/bobrossparrot.gif" >',
     '<img src="./img/explodyparrot.gif" >',
@@ -13,10 +15,16 @@ let gifs= [
     '<img src="./img/tripletsparrot.gif" >',
     '<img src="./img/unicornparrot.gif" >'
 ];
-numberOfCards = prompt("Digite a quantidade de cartas que deseja jogar");
-
 verifyConditionForPlay();
+
+let timerOfGame = setInterval(stopwatch , 1000);
+function stopwatch() {
+    value = Number(timer.innerHTML);
+    value++;
+    timer.innerHTML = value;
+}
 function verifyConditionForPlay() {
+    numberOfCards = prompt("Digite a quantidade de cartas que deseja jogar");
     numberOfCards = Number(numberOfCards);
     while (numberOfCards < 4 || numberOfCards > 14 || numberOfCards % 2 !== 0) {
         numberOfCards = prompt("Digite a quantidade de cartas que deseja jogar");
@@ -107,13 +115,15 @@ const turnCard = function (card1 , card2) {
 
 function verifyVictory() {
     if (conditionVictory == numberOfCards / 2) {
-        alert(`Você ganhou em ${count} rodadas`);
-        let answer = prompt('Deseja continuar a partida ?');
+        alert(`Você ganhou em ${count} rodadas em ${timer.innerHTML} segundos`);
+        let answer = prompt('Deseja continuar a partida ? (sim ou não)');
         if (answer === 'sim') {
             container.innerHTML = '';
             count = 0;
+            conditionVictory = 0;
             numberOfCards = prompt("Digite a quantidade de cartas que deseja jogar");
             verifyConditionForPlay();
+            timer.innerHTML = 0;
         } else if (answer === 'não') {
             alert('Então tchau :(');
         }
