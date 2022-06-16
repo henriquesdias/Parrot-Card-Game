@@ -10,10 +10,10 @@ let gifs= [
     '<img src="./img/tripletsparrot.gif" >',
     '<img src="./img/unicornparrot.gif" >'
 ];
-let numberOfCards = prompt("Digite a quantidade de cartas que deseja jogar");
 
 verifyConditionForPlay();
 function verifyConditionForPlay() {
+    let numberOfCards = prompt("Digite a quantidade de cartas que deseja jogar");
     numberOfCards = Number(numberOfCards);
     while (numberOfCards < 4 || numberOfCards > 14 || numberOfCards % 2 !== 0) {
         numberOfCards = prompt("Digite a quantidade de cartas que deseja jogar");
@@ -65,30 +65,50 @@ function showBeforeTheBeginGame() {
 let firstCard;
 let secondCard;
 function selectCard(e) {
-    clearInterval('id');
-    e.querySelector('.backCard').classList.toggle('effectBackCard');
-    e.querySelector('.frontCard').classList.toggle('effectFrontCard');
+    // clearInterval('id');
+ 
     if (firstCard === undefined) {
         firstCard = e;
+        firstCard.querySelector('.backCard').classList.toggle('effectBackCard');
+        firstCard.querySelector('.frontCard').classList.toggle('effectFrontCard');
     } else {
         secondCard = e;
+        secondCard.querySelector('.backCard').classList.toggle('effectBackCard');
+        secondCard.querySelector('.frontCard').classList.toggle('effectFrontCard');
         if (firstCard.innerHTML === secondCard.innerHTML) {
             console.log('são iguais');
             firstCard = undefined;
             secondCard = undefined;
         } else {
-            firstCard.querySelector('.backCard').classList.toggle('effectBackCard');
-            firstCard.querySelector('.frontCard').classList.toggle('effectFrontCard');
-            secondCard.querySelector('.backCard').classList.toggle('effectBackCard');
-            secondCard.querySelector('.frontCard').classList.toggle('effectFrontCard');
+            setTimeout(turnCard , 1000 , firstCard, secondCard);
             firstCard = undefined;
             secondCard = undefined;
         }
+
     }
+    // verifyVictory();
 }
-// function turnCard(){
-//     firstCard.querySelector('.backCard').classList.toggle('effectBackCard');
-//     firstCard.querySelector('.frontCard').classList.toggle('effectFrontCard');
-//     secondCard.querySelector('.backCard').classList.toggle('effectFrontCard');
-//     secondCard.querySelector('.frontCard').classList.toggle('effectBackCard');
+const turnCard = function (card1 , card2) {
+    card1.querySelector('.backCard').classList.toggle('effectBackCard');
+    card1.querySelector('.frontCard').classList.toggle('effectFrontCard');
+    card2.querySelector('.backCard').classList.toggle('effectBackCard');
+    card2.querySelector('.frontCard').classList.toggle('effectFrontCard');
+    console.log('elas viraram');
+}
+// function turnCard(card1 , card2){
+//     card1.querySelector('.backCard').classList.toggle('effectBackCard');
+//     card1.querySelector('.frontCard').classList.toggle('effectFrontCard');
+//     card2.querySelector('.backCard').classList.toggle('effectBackCard');
+//     card2.querySelector('.frontCard').classList.toggle('effectFrontCard');
+// }
+
+// function verifyVictory() {
+//     let j = 0;
+//     for (let i = 0  ; i < numberOfCards ; i++) {
+//         if (allCards[i].querySelector('.backCard').classList.contains('effectBackCard')) {
+//             j++;
+//         } if (j == numberOfCards) {
+//             alert('Você ganhou !!');
+//         }
+//     }
 // }
