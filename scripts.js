@@ -82,37 +82,37 @@ let firstCard;
 let secondCard;
 let conditionVictory = 0;
 function selectCard(e) {
-    count++;
-    console.log(count);
-    if (firstCard === undefined) {
-        firstCard = e;
-        firstCard.querySelector('.backCard').classList.toggle('effectBackCard');
-        firstCard.querySelector('.frontCard').classList.toggle('effectFrontCard');
-    } else {
-        secondCard = e;
-        secondCard.querySelector('.backCard').classList.toggle('effectBackCard');
-        secondCard.querySelector('.frontCard').classList.toggle('effectFrontCard');
-        if (firstCard.innerHTML === secondCard.innerHTML) {
-            firstCard = undefined;
-            secondCard = undefined;
-            conditionVictory++;
+    if (e.querySelector('.backCard').classList.contains('effectBackCard') === false) {
+        count++;
+        console.log(count);
+        if (firstCard === undefined) {
+            firstCard = e;
+            firstCard.querySelector('.backCard').classList.toggle('effectBackCard');
+            firstCard.querySelector('.frontCard').classList.toggle('effectFrontCard');
         } else {
-            setTimeout(turnCard , 1000 , firstCard, secondCard);
-            firstCard = undefined;
-            secondCard = undefined;
+            secondCard = e;
+            secondCard.querySelector('.backCard').classList.toggle('effectBackCard');
+            secondCard.querySelector('.frontCard').classList.toggle('effectFrontCard');
+            if (firstCard.innerHTML === secondCard.innerHTML) {
+                firstCard = undefined;
+                secondCard = undefined;
+                conditionVictory++;
+            } else {
+                setTimeout(turnCard , 1000 , firstCard, secondCard);
+                firstCard = undefined;
+                secondCard = undefined;
+            }
         }
-
+        setTimeout(verifyVictory , 700);
     }
-    setTimeout(verifyVictory , 700);
 }
+
 const turnCard = function (card1 , card2) {
     card1.querySelector('.backCard').classList.toggle('effectBackCard');
     card1.querySelector('.frontCard').classList.toggle('effectFrontCard');
     card2.querySelector('.backCard').classList.toggle('effectBackCard');
     card2.querySelector('.frontCard').classList.toggle('effectFrontCard');
 }
-
-
 function verifyVictory() {
     if (conditionVictory == numberOfCards / 2) {
         alert(`Você ganhou em ${count} rodadas em ${timer.innerHTML} segundos`);
@@ -125,6 +125,7 @@ function verifyVictory() {
             verifyConditionForPlay();
             timer.innerHTML = 0;
         } else if (answer === 'não') {
+            clearInterval(timerOfGame);
             alert('Então tchau :(');
         }
     }

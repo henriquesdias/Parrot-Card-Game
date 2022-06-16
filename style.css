@@ -94,4 +94,7 @@ img{
     main > div{
         flex-direction: column;
     }
+    .timer{
+        top: 50px;
+    }
 }
