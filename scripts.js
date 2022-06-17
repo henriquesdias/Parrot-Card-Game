@@ -115,8 +115,8 @@ const turnCard = function (card1 , card2) {
 }
 function verifyVictory() {
     if (conditionVictory == numberOfCards / 2) {
-        alert(`Você ganhou em ${count} rodadas no tempo de ${timer.innerHTML} segundos`);
-        let answer = prompt('Deseja continuar a partida ? (sim ou não)');
+        alert(`Você ganhou em ${count} rodadas no tempo de ${value} segundos`);
+        let answer = prompt('Deseja continuar jogando ? (sim ou não)');
         if (answer === 'sim') {
             container.innerHTML = '';
             count = 0;
