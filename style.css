@@ -48,12 +48,10 @@ img{
 .card{
     width: 117px;
     height: 146px;
-    background-color: #A7E9AF;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 5px;
-    border: 1px solid #99CEA8;
     cursor: pointer;
     margin: 10px;
 }
