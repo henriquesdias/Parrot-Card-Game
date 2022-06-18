@@ -19,7 +19,6 @@ verifyConditionForPlay();
 
 let timerOfGame = setInterval(stopwatch , 1000);
 function stopwatch() {
-    // timer.innerHTML = Number(timer.innerHTML);
     timer.innerHTML++;
 }
 function verifyConditionForPlay() {
