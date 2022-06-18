@@ -10,11 +10,13 @@ header{
     align-items: center;
     position: relative;
     margin-top: 40px;
+    text-align: center;
 
 }
 .timer{
     position: absolute;
     right: 2px;
+    top: 80px;
     width: 55px;
     height: 35px;
     font-size: 25px;
@@ -95,6 +97,6 @@ img{
         flex-direction: column;
     }
     .timer{
-        top: 50px;
+        top: 100px;
     }
 }

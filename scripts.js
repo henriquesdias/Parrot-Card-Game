@@ -1,11 +1,11 @@
 let allCards;
 let count = 0;
-let times = 0;
-let value;
 let container = document.querySelector('main');
 let numberOfCards;
-let showCards;
 const timer = document.querySelector('.timer');
+let firstCard;
+let secondCard;
+let conditionVictory = 0;
 let gifs= [
     '<img src="./img/bobrossparrot.gif" >',
     '<img src="./img/explodyparrot.gif" >',
@@ -19,13 +19,11 @@ verifyConditionForPlay();
 
 let timerOfGame = setInterval(stopwatch , 1000);
 function stopwatch() {
-    value = Number(timer.innerHTML);
-    value++;
-    timer.innerHTML = value;
+    timer.innerHTML = Number(timer.innerHTML);
+    timer.innerHTML++;
 }
 function verifyConditionForPlay() {
-    numberOfCards = prompt("Digite a quantidade de cartas que deseja jogar");
-    numberOfCards = Number(numberOfCards);
+    numberOfCards = Number(prompt("Digite a quantidade de cartas que deseja jogar"));
     while (numberOfCards < 4 || numberOfCards > 14 || numberOfCards % 2 !== 0) {
         numberOfCards = prompt("Digite a quantidade de cartas que deseja jogar");
     }
@@ -52,7 +50,8 @@ function verifyConditionForPlay() {
     allCards = document.querySelectorAll('.card');
     shuffleDeck();
 
-    showCards = setInterval( showBeforeTheBeginGame , 500);
+    setTimeout( showBeforeTheBeginGame , 500);
+    setTimeout( showBeforeTheBeginGame , 850);
 }
 function shuffleDeck() {
     let cardsFinal = [];
@@ -71,20 +70,11 @@ function showBeforeTheBeginGame() {
     for(let i = 0 ; i < numberOfCards ; i++) {
         allCards[i].querySelector('.backCard').classList.toggle('effectBackCard');
         allCards[i].querySelector('.frontCard').classList.toggle('effectFrontCard');
-    }
-    times++;
-    if (times === 2) {
-        clearInterval(showCards);
-        times = 0;
-    }    
+    }  
 }
-let firstCard;
-let secondCard;
-let conditionVictory = 0;
 function selectCard(e) {
-    if (e.querySelector('.backCard').classList.contains('effectBackCard') === false) {
+    if (e.querySelector('.backCard').classList.contains('effectBackCard') === false && secondCard === undefined) {
         count++;
-        console.log(count);
         if (firstCard === undefined) {
             firstCard = e;
             firstCard.querySelector('.backCard').classList.toggle('effectBackCard');
@@ -99,8 +89,6 @@ function selectCard(e) {
                 conditionVictory++;
             } else {
                 setTimeout(turnCard , 1000 , firstCard, secondCard);
-                firstCard = undefined;
-                secondCard = undefined;
             }
         }
         setTimeout(verifyVictory , 700);
@@ -112,10 +100,12 @@ const turnCard = function (card1 , card2) {
     card1.querySelector('.frontCard').classList.toggle('effectFrontCard');
     card2.querySelector('.backCard').classList.toggle('effectBackCard');
     card2.querySelector('.frontCard').classList.toggle('effectFrontCard');
+    firstCard = undefined;
+    secondCard = undefined;
 }
 function verifyVictory() {
     if (conditionVictory == numberOfCards / 2) {
-        alert(`Você ganhou em ${count} rodadas no tempo de ${value} segundos`);
+        alert(`Você ganhou em ${count} rodadas no tempo de ${timer.innerHTML} segundos`);
         let answer = prompt('Deseja continuar jogando ? (sim ou não)');
         if (answer === 'sim') {
             container.innerHTML = '';
